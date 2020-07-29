@@ -533,24 +533,24 @@ def main() :
     add_bankId()  # 添加开户行及账号
     add_name()  # 添加收款人复核人开票人名字
     # global_var.im.show()
-    im.save('pic_origin\\res' + str(index) + '.jpg')  # 保存添加完的图片
+    im.save('test\\pic_origin\\res' + str(index) + '.jpg')  # 保存添加完的图片
 
     # 图片仿射变换
-    img = cv.imread('pic_origin\\res' + str(index) + '.jpg')
+    img = cv.imread('test\\pic_origin\\res' + str(index) + '.jpg')
     split_picture.split_to_box(img, index)
     rot_mat = cv.getRotationMatrix2D((cx, cy), rotate_angle, 1)
     img_rotated_by_alpha = cv.warpAffine(img, rot_mat, (img.shape[1], img.shape[0]))
     blur_num = int(random.choice(['1', '3', '5', '7']))  # 模糊的程度
     dst_img = cv.GaussianBlur(img_rotated_by_alpha, (blur_num, blur_num), 0)
-    # dir_name = 'res\\res' + str(index)
+    # dir_name = 'test\\res\\res' + str(index)
     # os.mkdir(dir_name)
 
-    cv.imwrite('res\\pic' + str(index) + '.jpg', dst_img)  # 保存高斯模糊处理+仿射变换后的图片
+    cv.imwrite('test\\res\\pic' + str(index) + '.jpg', dst_img)  # 保存高斯模糊处理+仿射变换后的图片
     print(index)
 
 
 if __name__ == '__main__' :
-    for index in range(5000) :
+    for index in range(5) :
         template_num = random.randint(1, 4)
         im = Image.open('pic_template\\template_' + str(template_num) + '.jpg')  # 随机挑选一个模板图
         draw = ImageDraw.Draw(im)
@@ -562,5 +562,5 @@ if __name__ == '__main__' :
         img_tmp = cv.imread('pic_template\\template_' + str(template_num) + '.jpg')
         h, w, c = img_tmp.shape  # 获取图片的高和宽
         cx, cy = w / 2, h / 2  # 得到中心坐标点
-        filename = 'res\\pic' + str(index) + '.txt'
+        filename = 'test\\res\\pic' + str(index) + '.txt'
         main()

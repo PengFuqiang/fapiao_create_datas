@@ -10,7 +10,7 @@ def split_to_box(img, index) :
     每个内容占用一个方框，以此框进行切割
     :param img: 要切割的图片，在main函数中定义   index: 要切割的图片的序号
     """
-    dir_name = "res\\splits" + str(index)
+    dir_name = "test\\res\\splits" + str(index)
     os.mkdir(dir_name)
 
     # 先以切割发票代码进行举例
